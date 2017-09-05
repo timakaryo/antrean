@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'antrean.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'antrean',
-        'USER': 'antrean',
-        'PASSWORD': 'antrean',
-        'HOST': '10.0.0.100',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': 5432,
     }
 }
@@ -131,3 +131,14 @@ STATIC_URL = '/static/'
 
 # Antrean user model
 AUTH_USER_MODEL = 'engine.User'
+
+# Import local settings
+try:
+    from antrean.local_settings import *
+except ImportError:
+    try:
+        from local_settings import *
+    except ImportError:
+        pass
+except Exception, e:
+    raise e
